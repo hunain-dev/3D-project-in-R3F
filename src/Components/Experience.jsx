@@ -29,6 +29,10 @@ const Experience = () => {
   const groupref = useRef(null);
 
 
+  const scrollspeedref = useRef(0);
+  const targetscrollspeedref = useRef(0);
+
+
   const {gl} = useThree();
 
    useEffect(() => {
@@ -36,6 +40,7 @@ const Experience = () => {
     const wheelhandler = (e) =>{
       e.preventDefault();
       targetrotationref.current += e.deltaY * 0.01;
+      targetscrollspeedref.current += e.deltaY * 0.01;
 
     }
 
@@ -56,7 +61,15 @@ const Experience = () => {
       targetrotationref.current,
       1  - Math.exp(-0.5 * delta))
 
+
+      scrollspeedref.current = THREE.MathUtils.lerp(
+        scrollspeedref.current,
+        targetscrollspeedref.current,
+        1  - Math.exp(-0.5 * delta))
+
    groupref.current.rotation.y = currentrotationref.current;
+
+   targetscrollspeedref.current *= 0.08;
 
 
 

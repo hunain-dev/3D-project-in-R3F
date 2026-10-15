@@ -1,8 +1,8 @@
 
-import { OrbitControls } from "@react-three/drei";
 import { useMemo } from "react";
 import * as THREE from "three";
-
+import vertexshaders from "../Shaders/Vertexshader.glsl"
+import Fragmentshaders from "../Shaders/Fragmentshader.glsl"
 const Card = ({
   texture,
   index,
@@ -28,6 +28,18 @@ const Card = ({
   }, [angles, RADIUS]);
 
 
+  // unifrom
+
+
+  const uniforms = useMemo(
+    () => ({
+      uTexture: { value: texture },
+      uScrollSpeed: { value: 0 },
+    }),
+    [texture]
+  );
+
+
   return (
     <>
        {/* <OrbitControls/> */}
@@ -39,7 +51,10 @@ const Card = ({
 
     <planeGeometry args={[CARD_W, CARD_H, 32, 32]} />
 
-      <meshBasicMaterial
+      <shaderMaterial
+      vertexShader={vertexshaders}
+      fragmentShader={Fragmentshaders}
+      uniforms={uniforms}
         map={texture}
         side={THREE.DoubleSide}
       />

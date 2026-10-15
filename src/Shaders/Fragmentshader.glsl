@@ -1,5 +1,10 @@
+varying vec2 vUv;
+
+uniform sampler2D uTexture;
+
 void main(){
-      gl_FragColor = vec4(2.0, 0.0, 0.0, 2.0);
+    vec4 tex = texture2D(uTexture, vUv);
+    gl_FragColor = tex;
 
 
 }
