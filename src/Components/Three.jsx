@@ -3,12 +3,12 @@ import Experience from './Experience'
 
 const Three = () => {
   return (
-    <div className='h-screen w-full'>
-        <Canvas>
-            <Experience/>
-        </Canvas>
-      
+    <div className='h-screen flex items-center jusitfy-center w-full'>
+      <Canvas>
+        <Experience/>
+      </Canvas>
     </div>
+  
   )
 }
 
