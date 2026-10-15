@@ -1,8 +1,9 @@
 
-import { useTexture, OrbitControls } from "@react-three/drei";
-import { useEffect } from "react";
+import { useTexture } from "@react-three/drei";
+import { useEffect, useRef } from "react";
 import * as THREE from "three";
 import Card from "./Card";
+import { useFrame, useThree } from "@react-three/fiber";
 
 
 const IMAGES_URL = [
@@ -23,6 +24,45 @@ const RADIUS = 3;
 const Experience = () => {
   const textures = useTexture(IMAGES_URL);
 
+  const currentrotationref = useRef(0);
+  const targetrotationref = useRef(0);
+  const groupref = useRef(null);
+
+
+  const {gl} = useThree();
+
+   useEffect(() => {
+    const canvas = gl.domElement;
+    const wheelhandler = (e) =>{
+      e.preventDefault();
+      targetrotationref.current += e.deltaY * 0.01;
+
+    }
+
+    canvas.addEventListener("wheel",wheelhandler,{
+      passive:false
+    })
+
+    return(()=>{
+      canvas.removeEventListener("wheel",wheelhandler);
+    })
+   }, [gl]);
+
+
+   useFrame((state,delta)=>{
+    if (!groupref.current) return;
+    currentrotationref.current = THREE.MathUtils.lerp(
+      currentrotationref.current,
+      targetrotationref.current,
+      1  - Math.exp(-0.5 * delta))
+
+   groupref.current.rotation.y = currentrotationref.current;
+
+
+
+   })
+   
+
   useEffect(() => {
     textures.forEach((tex) => {
       tex.minFilter = THREE.LinearFilter;
@@ -33,9 +73,9 @@ const Experience = () => {
 
   return (
     <>
-      <OrbitControls enableDamping />
+      {/* <OrbitControls enableDamping /> */}
 
-      <group>
+      <group ref={groupref}>
 
         {textures.map((texture, index) => (
           <Card

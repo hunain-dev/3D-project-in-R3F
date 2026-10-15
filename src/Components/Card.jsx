@@ -1,4 +1,5 @@
 
+import { OrbitControls } from "@react-three/drei";
 import { useMemo } from "react";
 import * as THREE from "three";
 
@@ -10,6 +11,8 @@ const Card = ({
   CARD_W,
   CARD_H,
 }) => {
+
+
   // Har card ka angle
 
   const angles = (index / CARD_TOTAL) * 2 * Math.PI;
@@ -21,9 +24,13 @@ const Card = ({
     const z = RADIUS * Math.cos(angles);
 
     return [x, 0, z];
+
   }, [angles, RADIUS]);
 
+
   return (
+    <>
+       {/* <OrbitControls/> */}
     <mesh
       position={position}
       rotation={[0, angles,0]}
@@ -37,6 +44,8 @@ const Card = ({
         side={THREE.DoubleSide}
       />
     </mesh>
+    </>
+ 
   );
 };
 
