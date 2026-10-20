@@ -8,61 +8,84 @@ const PROJECTS = [
   {
     type: "video",
     src: "/Assets/Videos/commingsoon.mp4",
+
   },
 
   {
     type: "image",
     src: "https://hunaunfolio.vercel.app/assets/images/Jeskojets.webp",
+    link: "https://jetsofjets.vercel.app/",
+
   },
 
   {
     type: "image",
     src: "https://hunaunfolio.vercel.app/assets/images/Klearmindtherapy.webp",
+    link:"https://klearmind-sec-lives.vercel.app/"
+
   },
 
   {
     type: "image",
     src: "https://hunaunfolio.vercel.app/assets/images/Tobacco.webp",
+    link:"https://tabacco-awwwards-website-clone.vercel.app/"
+
   },
 
   {
     type: "image",
     src: "https://hunaunfolio.vercel.app/assets/images/jobs.webp",
+    link:"https://job-board-app-azure-alpha.vercel.app/"
+
   },
 
   {
     type: "image",
     src: "https://hunaunfolio.vercel.app/assets/images/ochidesign.webp",
+    link:"https://ochi-web-production.vercel.app/"
+
   },
 
   {
     type: "image",
     src: "https://hunaunfolio.vercel.app/assets/images/Christmas.webp",
+    link:"https://christmas-website-in-reactjs.vercel.app/"
+
   },
 
   {
     type: "image",
     src: "https://hunaunfolio.vercel.app/assets/images/tictac.webp",
+    link:"https://tic-tac-toe-game-azure-xi.vercel.app/"
+
   },
 
   {
     type: "image",
     src: "https://hunaunfolio.vercel.app/assets/images/spacer.webp",
+    link:"https://gabor-cyl3.vercel.app/"
+
   },
 
   {
     type: "image",
     src: "https://hunaunfolio.vercel.app/assets/images/weather.webp",
+    link:"https://weather-app-bay-two-4enjejutpd.vercel.app/"
+
   },
 
   {
     type: "image",
     src: "https://hunaunfolio.vercel.app/assets/images/rejouices.webp",
+    link:"https://www.rejouice.com/"
+
   },
 
   {
     type: "image",
     src: "https://hunaunfolio.vercel.app/assets/images/twogoodco.webp",
+    link:"https://furni-modern-interior-design-studio.vercel.app/"
+
   },
 ];
 
@@ -288,6 +311,7 @@ const Experience = () => {
         scrollspeedref={scrollspeedref}
         CARD_W={CARD_W}
         CARD_H={CARD_H}
+        link={project.link}
       />
     );
   })}

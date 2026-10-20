@@ -11,7 +11,8 @@ const Card = ({
   RADIUS,
   CARD_W,
   CARD_H,
-  scrollspeedref
+  scrollspeedref,
+  link
 }) => {
 
 
@@ -82,9 +83,25 @@ const Card = ({
 
   return (
     <>
+
     <mesh
+onClick={()=>{
+  if (link) {
+    window.open(link, "_blank", "noopener,noreferrer",);
+       
+  }
+}}
+
     onPointerMove={(e) => {
       mouseRef.current.set(e.uv.x, e.uv.y);
+    }}
+
+
+    onPointerOver={() => {
+      document.body.style.cursor = "pointer";
+    }}
+    onPointerOut={() => {
+      document.body.style.cursor = "auto";
     }}
 
     onPointerEnter={() => {
@@ -96,8 +113,10 @@ const Card = ({
     }}    
       position={position}
       rotation={[0, angles,0]}
-      
     >
+
+
+
 
 
     <planeGeometry args={[CARD_W, CARD_H, 32, 32]} />
