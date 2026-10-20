@@ -4,7 +4,6 @@ import * as THREE from "three";
 import vertexshaders from "../Shaders/Vertexshader.glsl"
 import Fragmentshaders from "../Shaders/Fragmentshader.glsl"
 import { useFrame } from "@react-three/fiber";
-import { OrbitControls } from "@react-three/drei";
 const Card = ({
   texture,
   index,
@@ -41,6 +40,8 @@ const Card = ({
       uTime : {value: 0},
       uMouse: { value: new THREE.Vector2(0.5, 0.5) },
       uHover: { value: 0 },
+
+
     }),
     [texture]
   );
@@ -67,12 +68,20 @@ const Card = ({
       8,
       delta
     );
+
+    // Update video texture
+    const texture = uniforms.uTexture.value;
+
+    if (texture instanceof  THREE.VideoTexture) {
+      texture.needsUpdate = true;
+
+    }
+
   });
 
 
   return (
     <>
-       <OrbitControls/>
     <mesh
     onPointerMove={(e) => {
       mouseRef.current.set(e.uv.x, e.uv.y);
