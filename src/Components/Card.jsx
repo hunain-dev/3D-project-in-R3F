@@ -4,6 +4,7 @@ import * as THREE from "three";
 import vertexshaders from "../Shaders/Vertexshader.glsl"
 import Fragmentshaders from "../Shaders/Fragmentshader.glsl"
 import { useFrame } from "@react-three/fiber";
+import { OrbitControls } from "@react-three/drei";
 const Card = ({
   texture,
   index,
@@ -37,24 +38,53 @@ const Card = ({
     () => ({
       uTexture: { value: texture },
       uScrollSpeed: { value: 0 },
+      uTime : {value: 0},
+      uMouse: { value: new THREE.Vector2(0.5, 0.5) },
+      uHover: { value: 0 },
     }),
     [texture]
   );
 
   const materialref = useRef(null);
+  const mouseRef = useRef(new THREE.Vector2(0.5, 0.5));
+  const hoverRef = useRef(0);
+
 
   // useframe for cruve 
-  useFrame(()=>{
-    if(!materialref.current) return;
-    materialref.current.uniforms.uScrollSpeed.value = scrollspeedref.current;
-
-
+  useFrame((state, delta) => {
+    if (!materialref.current) return;
+  
+    const uniforms = materialref.current.uniforms;
+  
+    uniforms.uScrollSpeed.value = scrollspeedref.current;
+    uniforms.uTime.value = state.clock.elapsedTime;
+  
+    uniforms.uMouse.value.copy(mouseRef.current);
+  
+    uniforms.uHover.value = THREE.MathUtils.damp(
+      uniforms.uHover.value,
+      hoverRef.current,
+      8,
+      delta
+    );
   });
+
 
   return (
     <>
-       {/* <OrbitControls/> */}
+       <OrbitControls/>
     <mesh
+    onPointerMove={(e) => {
+      mouseRef.current.set(e.uv.x, e.uv.y);
+    }}
+
+    onPointerEnter={() => {
+      hoverRef.current = 1;
+    }}
+    
+    onPointerLeave={() => {
+      hoverRef.current = 0;
+    }}    
       position={position}
       rotation={[0, angles,0]}
       

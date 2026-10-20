@@ -7,19 +7,24 @@ import { useFrame, useThree } from "@react-three/fiber";
 
 
 const IMAGES_URL = [
-  "https://images.unsplash.com/photo-1774606570918-aa9d70b2932b?q=80&w=1932&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1774523195578-121a2d1da490?q=80&w=1171&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1773772255047-74744067601e?q=80&w=1170&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1749303544314-cb8ec06223d5?q=80&w=1632&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1775119221769-6b0af28704ed?q=80&w=1170&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1775563655673-c28ac3802166?q=80&w=1228&auto=format&fit=crop",
+  "https://hunaunfolio.vercel.app/assets/images/twogoodco.webp",
+  "https://hunaunfolio.vercel.app/assets/images/Jeskojets.webp",
+  "https://hunaunfolio.vercel.app/assets/images/Klearmindtherapy.webp",
+  "https://hunaunfolio.vercel.app/assets/images/Tobacco.webp",
+  "https://hunaunfolio.vercel.app/assets/images/jobs.webp",
+  "https://hunaunfolio.vercel.app/assets/images/ochidesign.webp",
+  "https://hunaunfolio.vercel.app/assets/images/Christmas.webp",
+  "https://hunaunfolio.vercel.app/assets/images/tictac.webp",
+  "https://hunaunfolio.vercel.app/assets/images/spacer.webp",
+  "https://hunaunfolio.vercel.app/assets/images/weather.webp"
 ];
 
 
-const CARD_H = 1.2;
-const CARD_W = 2;
+
+const CARD_H = 1.3;
+const CARD_W = 1.9;
 const CARD_TOTAL = IMAGES_URL.length;
-const RADIUS = 2.8;
+const RADIUS = 3.4;
 
 const Experience = () => {
   const textures = useTexture(IMAGES_URL);
@@ -42,7 +47,7 @@ const Experience = () => {
   const {gl} = useThree();
 
 
-  
+
    useEffect(() => {
     const canvas = gl.domElement;
     let isDragging = false;

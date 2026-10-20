@@ -1,5 +1,5 @@
-varying vec2 vUv;
  uniform float uScrollSpeed;
+varying vec2 vUv;
 
 void main() {
     vec3 pos = position;
