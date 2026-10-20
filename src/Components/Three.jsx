@@ -4,7 +4,9 @@ import Experience from './Experience'
 const Three = () => {
   return (
     <div className='h-screen flex items-center jusitfy-center w-full'>
-      <Canvas>
+      <Canvas >
+
+    
         <Experience/>
       </Canvas>
     </div>
